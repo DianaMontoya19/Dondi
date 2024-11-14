@@ -29,7 +29,8 @@ public class Generator : MonoBehaviour
                 GameObject newButton = Instantiate(_button[randomIndex], position, transform.rotation);
 
                 // Establecemos el padre del botón
-                newButton.transform.parent = this.transform;
+                newButton.transform.SetParent(this.transform);
+                
 
                            }
         }
