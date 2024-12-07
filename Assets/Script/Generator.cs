@@ -1,49 +1,44 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class Generator : MonoBehaviour
+namespace Script
 {
-    [SerializeField] private GameObject[] _button;
-    [SerializeField] private float _spacing = 2.0f;
-    [SerializeField] private int _columns = 4; // Número de columnas
-    [SerializeField] private int _rows = 3; // Número de filas
-    [SerializeField] private float _verticalOffset;
-    [SerializeField] private float _horizontalOffset;
-
-    void Start()
+    public class Generator : MonoBehaviour
     {
-        // Aseguramos que el tamaño de _button sea suficiente para cubrir todas las filas y columnas.
-       // Generar las filas y columnas
-        for (int row = 0; row < _rows; row++)
+        [SerializeField] private GameObject[] button;
+        [SerializeField] private float spacing = 100f;
+        [SerializeField] private int columns = 4; // Nï¿½mero de columnas
+        [SerializeField] private int rows = 3; // Nï¿½mero de filas
+        [SerializeField] private float verticalOffset;
+        [SerializeField] private float horizontalOffset;
+
+        void Start()
         {
-            for (int column = 0; column < _columns; column++)
+            // Aseguramos que el tamaÃ±o de button sea suficiente para cubrir todas las filas y columnas.
+            // Generar las filas y columnas
+            for (int row = 0; row < rows; row++)
             {
-                // Calculamos la posición de cada botón (filas y columnas)
-                Vector3 position = transform.position + transform.right * (column * _spacing) + transform.right* _horizontalOffset + transform.up * (-row * _spacing) + transform.up * _verticalOffset; ;
-                int randomIndex = Random.Range(0, _button.Length);
-                // Instanciamos el botón en la posición calculada
-                GameObject newButton = Instantiate(_button[randomIndex], position, transform.rotation);
+                for (int column = 0; column < columns; column++)
+                {
+                    // Calculamos la posiciï¿½n de cada botï¿½n (filas y columnas)
+                    Vector3 position = transform.position + transform.right * (column * spacing) + transform.right* 
+                        horizontalOffset + transform.up * (-row * spacing) + transform.up * verticalOffset;
+                    
+                    int randomIndex = Random.Range(0, button.Length);
+                    // Instanciamos el botï¿½n en la posiciï¿½n calculada
+                    GameObject newButton = Instantiate(button[randomIndex], position, transform.rotation);
 
-                // Establecemos el padre del botón
-                newButton.transform.SetParent(this.transform);
-                
-
-                           }
+                    // Establecemos el padre del botï¿½n
+                    newButton.transform.SetParent(this.transform);
+                }
+            }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
-    }
-
-    public void DataButton(Image typeData)
-    {
-        typeData.gameObject.SetActive(true);
+        public void DataButton(Image typeData)
+        {
+            typeData.gameObject.SetActive(true);
+        }
     }
 }
