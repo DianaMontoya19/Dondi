@@ -13,16 +13,24 @@ namespace Script
         [SerializeField] private int rows = 3; // N�mero de filas
         [SerializeField] private float verticalOffset;
         [SerializeField] private float horizontalOffset;
-        [SerializeField] private GameObject gameOver;
+        public Image panel;
+        public bool lose, win;
+        public static Generator instance;
 
-        public static Generator Instance { get; private set; }
-
+        private void Awake()
+        {
+            instance = this;
+            //if(instance != null )
+            //{
+            //    instance.
+            //}
+        }
 
         void Start()
         {
             // Aseguramos que el tamaño de button sea suficiente para cubrir todas las filas y columnas.
             // Generar las filas y columnas
-            Instance = this;
+            lose = false;
             for (int row = 0; row < rows; row++)
             {
                 for (int column = 0; column < columns; column++)
@@ -40,19 +48,25 @@ namespace Script
                 }
             }
         }
-        
+
+        public void id(int data)
+        {
+            if(data == 1)
+            {
+             panel.enabled = true;
+
+            }
+           Debug.Log("Perdiste" + data);
+            
+        }
         public void DataButton(Image typeData)
         {
-            typeData.gameObject.SetActive(true);
-        }
-        public void id(int data)
-        {            
-            if(data == 1)
-            { 
 
-                gameOver.SetActive(true);
-                Debug.Log("Perdiste");
-            }
+            typeData.gameObject.SetActive(true);
+            
         }
+
+  
+
     }
 }
