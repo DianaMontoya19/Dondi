@@ -13,11 +13,16 @@ namespace Script
         [SerializeField] private int rows = 3; // N�mero de filas
         [SerializeField] private float verticalOffset;
         [SerializeField] private float horizontalOffset;
+        [SerializeField] private GameObject gameOver;
+
+        public static Generator Instance { get; private set; }
+
 
         void Start()
         {
             // Aseguramos que el tamaño de button sea suficiente para cubrir todas las filas y columnas.
             // Generar las filas y columnas
+            Instance = this;
             for (int row = 0; row < rows; row++)
             {
                 for (int column = 0; column < columns; column++)
@@ -39,6 +44,15 @@ namespace Script
         public void DataButton(Image typeData)
         {
             typeData.gameObject.SetActive(true);
+        }
+        public void id(int data)
+        {            
+            if(data == 1)
+            { 
+
+                gameOver.SetActive(true);
+                Debug.Log("Perdiste");
+            }
         }
     }
 }
