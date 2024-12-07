@@ -28,6 +28,6 @@ public class Manager : MonoBehaviour
             gameOver.SetActive(true);
 
         }
-        GameManager.Instance.GameOver();
+        //GameManager.Instance.GameOver();
     }
 }

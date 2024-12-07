@@ -26,7 +26,6 @@ namespace Script.Buscaminas
             {
                 gameOverPanel.SetActive(true);
             }
-            Debug.Log("eu");
             Debug.Log("Game Over!");
         }
     }
