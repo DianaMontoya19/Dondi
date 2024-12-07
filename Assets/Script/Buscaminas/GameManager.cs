@@ -6,6 +6,7 @@ namespace Script.Buscaminas
     {
         public static GameManager Instance;
         private int totalReward = 0;
+        public GameObject gameOverPanel;
 
         private void Awake()
         {
@@ -21,6 +22,11 @@ namespace Script.Buscaminas
         public void GameOver()
         {
             UIManager.Instance.ShowGameOver();
+            if (gameOverPanel != null)
+            {
+                gameOverPanel.SetActive(true);
+            }
+            Debug.Log("eu");
             Debug.Log("Game Over!");
         }
     }

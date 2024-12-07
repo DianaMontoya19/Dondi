@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -31,6 +32,10 @@ namespace Script
             // Aseguramos que el tamaño de button sea suficiente para cubrir todas las filas y columnas.
             // Generar las filas y columnas
             lose = false;
+            if (panel != null)
+            {
+                panel.gameObject.SetActive(false);
+            }
             for (int row = 0; row < rows; row++)
             {
                 for (int column = 0; column < columns; column++)
@@ -49,13 +54,27 @@ namespace Script
             }
         }
 
+        public void Update()
+        {
+        }
+
         public void id(int data)
         {
             if(data == 1)
             {
-             panel.enabled = true;
-             Debug.Log("Perdiste" + data);
+                if (panel != null)
+                {
+                    panel.gameObject.SetActive(true);
+                }
+                lose = true;
+                Debug.Log("Perdiste: " + data);
 
+                // Asegurarse de que el Manager se entere de la pérdida
+                Manager manager = FindObjectOfType<Manager>();
+                if (manager != null)
+                {
+                    manager.LoseCondition(lose);
+                }
             }
            
             
