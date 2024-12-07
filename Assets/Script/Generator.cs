@@ -54,9 +54,10 @@ namespace Script
             if(data == 1)
             {
              panel.enabled = true;
+             Debug.Log("Perdiste" + data);
 
             }
-           Debug.Log("Perdiste" + data);
+           
             
         }
         public void DataButton(Image typeData)
